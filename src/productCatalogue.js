@@ -35,11 +35,12 @@ class Catalogue {
     return result;
   }
 
-    batchAddProducts(batch) {
-    batch.products.forEach( p => 
-       this.addProduct(p)
-    )
-    return batch.products.length
+  batchAddProducts(batch) {
+    const validAdditions = batch.products.filter(
+      (product) => product.quantityInStock > 0
+    )  
+    validAdditions.forEach((p) => this.addProduct(p));
+    return validAdditions.length;
   }
 
 }
